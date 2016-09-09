@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="s3390317.mad.ass2">
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/calendar_icon_clipart"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".view.EventListActivity"
+            android:label="@string/event_list_activity_title">
+        </activity>
+        <activity
+            android:name=".view.EditEventActivity"
+            android:label="@string/edit_event_activity_title">
+        </activity>
+        <activity
+            android:name=".view.AddEventActivity"
+            android:label="@string/add_event_activity_title">
+        </activity>
+        <activity
+            android:name=".view.ViewEventActivity"
+            android:label="@string/view_event_activity_title">
+        </activity>
+        <activity
+            android:name=".view.CalendarActivity"
+            android:label="@string/calendar_activity_title">
+            <intent-filter
+                android:label="@string/app_name">
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

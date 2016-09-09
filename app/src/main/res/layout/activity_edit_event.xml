@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
+            <!-- Event title field -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/event_title_label">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edit_event_title_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapWords"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- Event start fields -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false">
+
+                <!-- Event start date field -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:hint="@string/event_start_date_label">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/edit_event_start_date_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="date"
+                        android:focusable="false"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <!-- Event start time field -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:hint="@string/event_start_time_label">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/edit_event_start_time_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.75"
+                        android:inputType="time"
+                        android:focusable="false"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <!-- Event end fields -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false">
+
+                <!-- Event end date field -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:hint="@string/event_end_date_label">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/edit_event_end_date_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="date"
+                        android:focusable="false"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <!-- Event end time field -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:hint="@string/event_end_time_label">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/edit_event_end_time_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.75"
+                        android:inputType="time"
+                        android:focusable="false"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <!-- Event venue field -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/event_venue_label">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edit_event_venue_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- Event location field -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/event_location_label">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edit_event_location_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- Event note field -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/event_note_label">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edit_event_note_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- Event attendees field -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/event_attendees_label">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edit_event_attendees_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:focusable="false"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

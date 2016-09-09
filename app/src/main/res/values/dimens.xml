@@ -1,0 +1,13 @@
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="event_list_row_padding_all">15dp</dimen>
+    <dimen name="event_list_row_date_right_margin">10dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="view_event_label_right_pad">5dp</dimen>
+    <dimen name="edit_event_label_right_pad">5dp</dimen>
+    <dimen name="nav_drawer_width">240dp</dimen>
+    <dimen name="nav_list_vert_padding">4dp</dimen>
+    <dimen name="calendar_event_list_row_padding_all">5dp</dimen>
+    <dimen name="calendar_day_min_size">40dp</dimen>
+</resources>

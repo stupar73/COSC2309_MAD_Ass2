@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Social Event Planner</string>
+    <string-array name="main_activities">
+        <item>Event List</item>
+        <item>Calendar</item>
+    </string-array>
+    <string name="drawer_open">Open the navigation drawer</string>
+    <string name="drawer_close">Close the navigation drawer</string>
+    <string name="event_list_activity_title">Event List</string>
+    <string name="view_event_activity_title">View Event</string>
+    <string name="edit_event_activity_title">Edit Event</string>
+    <string name="add_event_activity_title">Add Event</string>
+    <string name="calendar_activity_title">Calendar</string>
+    <string name="event_list_no_events">No events scheduled</string>
+    <string name="calendar_no_events">No events scheduled for selected date</string>
+    <string name="event_time">%1$s - %2$s</string>
+    <string name="action_bar_add_event">Add Event</string>
+    <string name="action_bar_sort">Sort Order</string>
+    <string name="action_bar_sort_asc">Ascending</string>
+    <string name="action_bar_sort_desc">Descending</string>
+    <string name="action_bar_edit">Edit</string>
+    <string name="action_bar_delete">Delete</string>
+    <string name="action_bar_save">Save</string>
+    <string name="event_title_label">Title</string>
+    <string name="event_start_label">Start</string>
+    <string name="event_start_date_label">Start Date</string>
+    <string name="event_start_time_label">Start Time</string>
+    <string name="event_end_label">End</string>
+    <string name="event_end_date_label">End Date</string>
+    <string name="event_end_time_label">End Time</string>
+    <string name="event_venue_label">Venue</string>
+    <string name="event_location_label">Location</string>
+    <string name="event_note_label">Note</string>
+    <string name="event_attendees_label">Attendees</string>
+    <string name="calendar_sunday">S</string>
+    <string name="calendar_monday">M</string>
+    <string name="calendar_tuesday">T</string>
+    <string name="calendar_wednesday">W</string>
+    <string name="calendar_thursday">T</string>
+    <string name="calendar_friday">F</string>
+    <string name="calendar_saturday">S</string>
+</resources>

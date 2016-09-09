@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/event_list_activity"
+            android:checked="false"
+            android:icon="@drawable/ic_view_event_list_black_48dp"
+            android:title="@string/event_list_activity_title" />
+
+        <item
+            android:id="@+id/calendar_activity"
+            android:checked="false"
+            android:icon="@drawable/ic_view_calendar_black_48dp"
+            android:title="@string/calendar_activity_title" />
+
+    </group>
+
+</menu>

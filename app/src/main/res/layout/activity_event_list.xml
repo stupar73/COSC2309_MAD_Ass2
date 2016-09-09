@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"/>
+
+        <!-- List of events -->
+        <ListView
+            android:id="@+id/event_list_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:choiceMode="multipleChoiceModal"/>
+
+        <!-- Displayed if list is empty -->
+        <TextView
+            android:id="@+id/empty_list_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:paddingTop="5dp"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/event_list_no_events"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/ic_add_white_48dp" />
+    
+    </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/drawer_navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/actions_navigation_drawer"/>
+
+</android.support.v4.widget.DrawerLayout>
