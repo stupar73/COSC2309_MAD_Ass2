@@ -1,5 +1,7 @@
 package s3390317.mad.ass2.model;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -17,6 +19,7 @@ public class EventModel
     private Map<String, SocialEvent> events;
     private List<SocialEvent> sortedEventsList;
     private boolean sortedAscending;
+    public Context appContext;
 
     public static EventModel getSingletonInstance()
     {
@@ -34,7 +37,7 @@ public class EventModel
         sortedAscending = true;
 
         // Add 10 sample events to the model
-        for (int i = 0; i < 10; i++)
+        /*for (int i = 0; i < 10; i++)
         {
             Calendar eventStart = Calendar.getInstance();
             eventStart.add(Calendar.DATE, i);
@@ -48,6 +51,32 @@ public class EventModel
                     "Test note " + i, attendees);
 
             addEvent(event);
+        }*/
+
+
+    }
+
+    // TODO Temp function
+    public void writeAll()
+    {
+        DatabaseHelper dbHelper = new DatabaseHelper(appContext);
+
+        for (SocialEvent e : sortedEventsList)
+        {
+            dbHelper.insertEvent(e);
+        }
+    }
+
+    // TODO Temp function
+    public void readAll()
+    {
+        DatabaseHelper dbHelper = new DatabaseHelper(appContext);
+
+        List<SocialEvent> dbEvents = dbHelper.getAllEvents();
+
+        for (SocialEvent e : dbEvents)
+        {
+            addEvent(e);
         }
     }
 

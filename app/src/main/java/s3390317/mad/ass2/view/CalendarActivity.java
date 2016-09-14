@@ -20,6 +20,7 @@ import s3390317.mad.ass2.controller.AddEventListener;
 import s3390317.mad.ass2.controller.CalendarGridItemLongPressedListener;
 import s3390317.mad.ass2.controller.NavigationItemSelectedListener;
 import s3390317.mad.ass2.controller.CalendarGridItemSelectedListener;
+import s3390317.mad.ass2.model.DatabaseHelper;
 import s3390317.mad.ass2.model.EventModel;
 import s3390317.mad.ass2.view.model.EventArrayAdapter;
 import s3390317.mad.ass2.view.model.IntentRequestCodes;
@@ -63,6 +64,10 @@ public class CalendarActivity extends AppCompatActivity
         eventList.setEmptyView(findViewById(R.id.empty_list_text));
 
         model = EventModel.getSingletonInstance();
+
+        model.appContext = getApplicationContext();
+        model.readAll();
+
         calendarView.setModel(model);
 
         calendarGrid.setOnItemClickListener(

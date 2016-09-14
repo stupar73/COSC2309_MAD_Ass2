@@ -26,11 +26,11 @@ public class SimpleSocialEvent implements SocialEvent
     private final DateFormat timeFormat = new SimpleDateFormat("h:mm a",
             Locale.getDefault());
 
-    public SimpleSocialEvent(String title, Calendar start, Calendar end,
-                             String venue, String location, String note,
-                             List<Contact> attendees)
+    public SimpleSocialEvent(String id, String title, Calendar start,
+                             Calendar end, String venue, String location,
+                             String note, List<Contact> attendees)
     {
-        this.id = UUID.randomUUID().toString();
+        this.id = id;
         this.title = title;
         this.start = start;
         this.end = end;
@@ -40,23 +40,25 @@ public class SimpleSocialEvent implements SocialEvent
         this.attendees = attendees;
     }
 
+    public SimpleSocialEvent(String title, Calendar start, Calendar end,
+                             String venue, String location, String note,
+                             List<Contact> attendees)
+    {
+        this(UUID.randomUUID().toString(), title, start, end, venue, location,
+                note, attendees);
+    }
+
     public SimpleSocialEvent(String title, String startDateStr,
                              String startTimeStr, String endDateStr,
                              String endTimeStr, String venue, String location,
                              String note, List<Contact> attendees)
     {
-        this.id = UUID.randomUUID().toString();
-        this.title = title;
-        this.start = Calendar.getInstance();
+        this(UUID.randomUUID().toString(), title, Calendar.getInstance(),
+                Calendar.getInstance(), venue, location, note, attendees);
         setStartDate(startDateStr);
         setStartTime(startTimeStr);
-        this.end = Calendar.getInstance();
         setEndDate(endDateStr);
         setEndTime(endTimeStr);
-        this.venue = venue;
-        this.location = location;
-        this.note = note;
-        this.attendees = attendees;
     }
 
     @Override
