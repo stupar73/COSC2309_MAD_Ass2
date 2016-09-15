@@ -12,6 +12,7 @@ import s3390317.mad.ass2.R;
 import s3390317.mad.ass2.model.EventModel;
 import s3390317.mad.ass2.model.SocialEvent;
 import s3390317.mad.ass2.view.CalendarView;
+import s3390317.mad.ass2.view.model.DatabaseHelper;
 import s3390317.mad.ass2.view.model.EventArrayAdapter;
 
 /**
@@ -24,17 +25,20 @@ public class CalendarGridItemSelectedListener
 {
     private Activity activity;
     private EventModel model;
+    private DatabaseHelper dbHelper;
     private CalendarView calendar;
     private ListView eventList;
     private EventArrayAdapter eventArrayAdapter;
 
     public CalendarGridItemSelectedListener(Activity activity, EventModel model,
-                                            CalendarView calendar,
+                                            DatabaseHelper dbHelper,
                                             ListView eventList,
-                                            EventArrayAdapter eventArrayAdapter)
+                                            EventArrayAdapter eventArrayAdapter,
+                                            CalendarView calendar)
     {
         this.activity = activity;
-        this.model= model;
+        this.model = model;
+        this.dbHelper = dbHelper;
         this.calendar = calendar;
         this.eventList = eventList;
         this.eventArrayAdapter = eventArrayAdapter;
@@ -52,11 +56,10 @@ public class CalendarGridItemSelectedListener
 
         eventArrayAdapter = new EventArrayAdapter(
                 activity,
-                R.layout.calendar_event_list_item,
-                false,
                 model,
-                eventsInMonth
-        );
+                dbHelper,
+                eventsInMonth, R.layout.calendar_event_list_item,
+                false);
         eventList.setAdapter(eventArrayAdapter);
         eventList.setOnItemClickListener(new ViewEventListener(
                 activity, eventArrayAdapter));

@@ -19,12 +19,14 @@ import s3390317.mad.ass2.controller.EventMultiChoiceModeListener;
 import s3390317.mad.ass2.controller.NavigationItemSelectedListener;
 import s3390317.mad.ass2.controller.ViewEventListener;
 import s3390317.mad.ass2.model.EventModel;
+import s3390317.mad.ass2.view.model.DatabaseHelper;
 import s3390317.mad.ass2.view.model.EventArrayAdapter;
 import s3390317.mad.ass2.view.model.IntentRequestCodes;
 
 public class EventListActivity extends AppCompatActivity
 {
     private EventModel model;
+    private DatabaseHelper dbHelper;
     private ListView eventList;
     private EventArrayAdapter eventArrayAdapter;
     private ActionBarDrawerToggle drawerToggle;
@@ -72,16 +74,17 @@ public class EventListActivity extends AppCompatActivity
         setUpFloatingActionButton();
 
         model = EventModel.getSingletonInstance();
+        dbHelper = DatabaseHelper.getSingletonInstance(this);
 
         eventList = (ListView) findViewById(R.id.event_list_activity);
 
         eventArrayAdapter = new EventArrayAdapter(
                 this,
-                R.layout.event_list_item,
-                true,
                 model,
-                model.getEventList()
-        );
+                dbHelper,
+                model.getEventList(),
+                R.layout.event_list_item,
+                true);
 
         eventList.setAdapter(eventArrayAdapter);
         eventList.setEmptyView(findViewById(R.id.empty_list_text));

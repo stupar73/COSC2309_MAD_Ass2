@@ -20,14 +20,16 @@ import s3390317.mad.ass2.controller.AddEventListener;
 import s3390317.mad.ass2.controller.CalendarGridItemLongPressedListener;
 import s3390317.mad.ass2.controller.NavigationItemSelectedListener;
 import s3390317.mad.ass2.controller.CalendarGridItemSelectedListener;
-import s3390317.mad.ass2.model.DatabaseHelper;
 import s3390317.mad.ass2.model.EventModel;
+import s3390317.mad.ass2.view.model.DatabaseHelper;
 import s3390317.mad.ass2.view.model.EventArrayAdapter;
 import s3390317.mad.ass2.view.model.IntentRequestCodes;
+import s3390317.mad.ass2.view.model.ModelDbHelper;
 
 public class CalendarActivity extends AppCompatActivity
 {
     private EventModel model;
+    private DatabaseHelper dbHelper;
     private ActionBarDrawerToggle drawerToggle;
     private CalendarView calendarView;
     private GridView calendarGrid;
@@ -64,15 +66,16 @@ public class CalendarActivity extends AppCompatActivity
         eventList.setEmptyView(findViewById(R.id.empty_list_text));
 
         model = EventModel.getSingletonInstance();
+        dbHelper = DatabaseHelper.getSingletonInstance(this);
 
-        model.appContext = getApplicationContext();
-        model.readAll();
+        ModelDbHelper.addAllEventsFromDb(model, dbHelper);
 
         calendarView.setModel(model);
 
         calendarGrid.setOnItemClickListener(
                 new CalendarGridItemSelectedListener(
-                this, model, calendarView, eventList, eventListAdapter));
+                        this, model, dbHelper, eventList, eventListAdapter,
+                        calendarView));
 
         calendarGrid.setOnItemLongClickListener(
                 new CalendarGridItemLongPressedListener(this, calendarGrid));

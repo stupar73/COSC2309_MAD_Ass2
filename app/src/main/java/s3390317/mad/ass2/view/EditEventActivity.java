@@ -21,6 +21,7 @@ import s3390317.mad.ass2.model.Contact;
 import s3390317.mad.ass2.model.EventModel;
 import s3390317.mad.ass2.model.SocialEvent;
 import s3390317.mad.ass2.view.model.ContactDataManager;
+import s3390317.mad.ass2.view.model.DatabaseHelper;
 import s3390317.mad.ass2.view.model.IntentRequestCodes;
 
 public class EditEventActivity extends AppCompatActivity
@@ -28,6 +29,7 @@ public class EditEventActivity extends AppCompatActivity
     private String LOG_TAG = this.getClass().getName();
 
     private EventModel model;
+    private DatabaseHelper dbHelper;
     private String eventId;
     private SocialEvent event;
     private EditText titleField;
@@ -83,6 +85,7 @@ public class EditEventActivity extends AppCompatActivity
                 R.drawable.ic_close_white_24dp);
 
         model = EventModel.getSingletonInstance();
+        dbHelper = DatabaseHelper.getSingletonInstance(this);
 
         Intent intent = getIntent();
         eventId = intent.getStringExtra("eventId");
@@ -188,6 +191,8 @@ public class EditEventActivity extends AppCompatActivity
         event.setLocation(locationField.getText().toString());
         event.setNote(noteField.getText().toString());
         event.setAttendees(attendees);
+
+        dbHelper.updateEvent(event);
 
         // Let the parent know the event was modified
         Intent returnIntent = new Intent();

@@ -25,20 +25,24 @@ import s3390317.mad.ass2.model.SocialEvent;
 public class EventArrayAdapter extends ArrayAdapter<SocialEvent>
 {
     private Context context;
+    private EventModel model;
+    private DatabaseHelper dbHelper;
     private int layoutResource;
     private boolean isStandalone;
     private SparseBooleanArray selectedItemsIds;
-    private EventModel model;
 
-    public EventArrayAdapter(Context context, int resource, boolean isStandalone,
-                             EventModel model, List<SocialEvent> events)
+    public EventArrayAdapter(Context context, EventModel model,
+                             DatabaseHelper dbHelper, List<SocialEvent> events,
+                             int resource, boolean isStandalone)
     {
         super(context, resource, events);
         this.context = context;
+        this.model = model;
+        this.dbHelper = dbHelper;
         this.layoutResource = resource;
         this.isStandalone = isStandalone;
         this.selectedItemsIds = new SparseBooleanArray();
-        this.model = model;
+
         this.model.sortEvents();
     }
 
@@ -86,7 +90,7 @@ public class EventArrayAdapter extends ArrayAdapter<SocialEvent>
     @Override
     public void remove(SocialEvent event)
     {
-        model.removeEvent(event.getId());
+        ModelDbHelper.removeEvent(model, dbHelper, event.getId());
         notifyDataSetChanged();
     }
 

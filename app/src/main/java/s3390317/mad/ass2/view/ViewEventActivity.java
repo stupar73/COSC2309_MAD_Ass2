@@ -12,11 +12,14 @@ import android.widget.Toast;
 import s3390317.mad.ass2.R;
 import s3390317.mad.ass2.model.EventModel;
 import s3390317.mad.ass2.model.SocialEvent;
+import s3390317.mad.ass2.view.model.DatabaseHelper;
 import s3390317.mad.ass2.view.model.IntentRequestCodes;
+import s3390317.mad.ass2.view.model.ModelDbHelper;
 
 public class ViewEventActivity extends AppCompatActivity
 {
     private EventModel model;
+    private DatabaseHelper dbHelper;
     private String eventId;
     private SocialEvent event;
     private boolean updateList = false;
@@ -39,6 +42,7 @@ public class ViewEventActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         model = EventModel.getSingletonInstance();
+        dbHelper = DatabaseHelper.getSingletonInstance(this);
 
         Intent intent = getIntent();
         eventId = intent.getStringExtra("eventId");
@@ -121,7 +125,7 @@ public class ViewEventActivity extends AppCompatActivity
      */
     private void removeEvent()
     {
-        model.removeEvent(eventId);
+        ModelDbHelper.removeEvent(model, dbHelper, eventId);
         Toast.makeText(this, event.getTitle() + " deleted.", Toast.LENGTH_SHORT)
                 .show();
         updateList = true;

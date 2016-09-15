@@ -1,4 +1,4 @@
-package s3390317.mad.ass2.model;
+package s3390317.mad.ass2.view.model;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import s3390317.mad.ass2.model.Contact;
+import s3390317.mad.ass2.model.SimpleSocialEvent;
+import s3390317.mad.ass2.model.SocialEvent;
+
 /**
  * TODO
  * Created by Stuart on 11/09/2016.
@@ -18,6 +22,8 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper
 {
     private static final String LOG_TAG = DatabaseHelper.class.getName();
+
+    private static DatabaseHelper singletonInstance;
 
     private static final String DATABASE_NAME = "socialEventPlannerDev.db";
     private static final int DATABASE_VERSION = 1;
@@ -30,7 +36,17 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String EVENT_COLUMN_LOCATION = "location";
     private static final String EVENT_COLUMN_NOTE = "note";
 
-    public DatabaseHelper(Context context)
+    public static DatabaseHelper getSingletonInstance(Context context)
+    {
+        if (singletonInstance == null)
+        {
+            singletonInstance = new DatabaseHelper(
+                    context.getApplicationContext());
+        }
+        return singletonInstance;
+    }
+
+    private DatabaseHelper(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -104,7 +120,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return events;
     }
 
-    public boolean insertEvent(SocialEvent event)
+    public boolean addEvent(SocialEvent event)
     {
         SQLiteDatabase db = getWritableDatabase();
 

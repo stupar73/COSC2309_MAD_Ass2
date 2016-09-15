@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import s3390317.mad.ass2.view.model.DatabaseHelper;
+
 public class EventModel
 {
     private static EventModel singletonInstance = null;
@@ -52,32 +54,6 @@ public class EventModel
 
             addEvent(event);
         }*/
-
-
-    }
-
-    // TODO Temp function
-    public void writeAll()
-    {
-        DatabaseHelper dbHelper = new DatabaseHelper(appContext);
-
-        for (SocialEvent e : sortedEventsList)
-        {
-            dbHelper.insertEvent(e);
-        }
-    }
-
-    // TODO Temp function
-    public void readAll()
-    {
-        DatabaseHelper dbHelper = new DatabaseHelper(appContext);
-
-        List<SocialEvent> dbEvents = dbHelper.getAllEvents();
-
-        for (SocialEvent e : dbEvents)
-        {
-            addEvent(e);
-        }
     }
 
     /**
