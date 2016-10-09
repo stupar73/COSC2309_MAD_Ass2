@@ -117,6 +117,7 @@
 
                 <TextView
                     android:id="@+id/view_event_location_field"
+                    android:textColor="@color/link_colour"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.75"

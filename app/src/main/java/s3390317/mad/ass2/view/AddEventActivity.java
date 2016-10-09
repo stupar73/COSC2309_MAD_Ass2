@@ -27,14 +27,14 @@ import s3390317.mad.ass2.view.model.ContactDataManager;
 import s3390317.mad.ass2.view.model.ContactDataManager.ContactQueryException;
 import s3390317.mad.ass2.view.model.DatabaseHelper;
 import s3390317.mad.ass2.view.model.IntentRequestCodes;
-import s3390317.mad.ass2.view.model.ModelDbHelper;
+import s3390317.mad.ass2.view.model.AndroidModel;
 
 public class AddEventActivity extends AppCompatActivity
 {
     private String LOG_TAG = this.getClass().getName();
 
     private EventModel model;
-    private DatabaseHelper dbHelper;
+    private AndroidModel androidModel;
     private EditText titleField;
     private EditText startDateField;
     private EditText startTimeField;
@@ -99,7 +99,7 @@ public class AddEventActivity extends AppCompatActivity
         }
 
         model = EventModel.getSingletonInstance();
-        dbHelper = DatabaseHelper.getSingletonInstance(this);
+        androidModel = AndroidModel.getSingletonInstance(this);
 
         attendees = new ArrayList<>();
 
@@ -208,7 +208,7 @@ public class AddEventActivity extends AppCompatActivity
                 startTimeStr, endDateStr, endTimeStr, venue, location, note,
                 attendees);
 
-        ModelDbHelper.addEvent(model, dbHelper, event);
+        androidModel.addEvent(event);
 
         // Let the parent know that the event list may have changed
         Intent returnIntent = new Intent();

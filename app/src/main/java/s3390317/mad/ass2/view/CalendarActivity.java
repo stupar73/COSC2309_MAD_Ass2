@@ -1,9 +1,14 @@
 package s3390317.mad.ass2.view;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -24,12 +30,14 @@ import s3390317.mad.ass2.model.EventModel;
 import s3390317.mad.ass2.view.model.DatabaseHelper;
 import s3390317.mad.ass2.view.model.EventArrayAdapter;
 import s3390317.mad.ass2.view.model.IntentRequestCodes;
-import s3390317.mad.ass2.view.model.ModelDbHelper;
+import s3390317.mad.ass2.view.model.AndroidModel;
 
 public class CalendarActivity extends AppCompatActivity
 {
+    private static final int PERMISSION_REQUEST_LOC = 1000;
+
     private EventModel model;
-    private DatabaseHelper dbHelper;
+    private AndroidModel androidModel;
     private ActionBarDrawerToggle drawerToggle;
     private CalendarView calendarView;
     private GridView calendarGrid;
@@ -65,20 +73,29 @@ public class CalendarActivity extends AppCompatActivity
 
         eventList.setEmptyView(findViewById(R.id.empty_list_text));
 
-        model = EventModel.getSingletonInstance();
-        dbHelper = DatabaseHelper.getSingletonInstance(this);
+        if (ContextCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSION_REQUEST_LOC);
+        }
 
-        ModelDbHelper.addAllEventsFromDb(model, dbHelper);
+        model = EventModel.getSingletonInstance();
+        androidModel = AndroidModel.getSingletonInstance(this);
 
         calendarView.setModel(model);
 
         calendarGrid.setOnItemClickListener(
                 new CalendarGridItemSelectedListener(
-                        this, model, dbHelper, eventList, eventListAdapter,
+                        this, model, androidModel, eventList, eventListAdapter,
                         calendarView));
 
         calendarGrid.setOnItemLongClickListener(
                 new CalendarGridItemLongPressedListener(this, calendarGrid));
+
+        androidModel.startBackgroundDistanceMatrixService(getApplicationContext());
     }
 
     private void setUpActionBar()
@@ -112,6 +129,27 @@ public class CalendarActivity extends AppCompatActivity
         FloatingActionButton fab = (FloatingActionButton) findViewById(
                 R.id.fab_add);
         fab.setOnClickListener(new AddEventListener(this));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults)
+    {
+        switch(requestCode)
+        {
+            case PERMISSION_REQUEST_LOC:
+                if (grantResults.length == 0
+                        || grantResults[0] != PackageManager.PERMISSION_GRANTED)
+                {
+                    Toast.makeText(
+                            this, "Location-based event notifications disabled.",
+                            Toast.LENGTH_LONG)
+                            .show();
+                }
+                return;
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override

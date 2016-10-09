@@ -9,4 +9,5 @@
     <color name="selected_item">#e8e8e8</color>
     <color name="calendar_day_header">#555555</color>
     <color name="calendar_today">#4b82ff</color>
+    <color name="link_colour">#0000EE</color>
 </resources>

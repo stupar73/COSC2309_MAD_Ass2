@@ -10,8 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -26,19 +24,19 @@ public class EventArrayAdapter extends ArrayAdapter<SocialEvent>
 {
     private Context context;
     private EventModel model;
-    private DatabaseHelper dbHelper;
+    private AndroidModel androidModel;
     private int layoutResource;
     private boolean isStandalone;
     private SparseBooleanArray selectedItemsIds;
 
     public EventArrayAdapter(Context context, EventModel model,
-                             DatabaseHelper dbHelper, List<SocialEvent> events,
+                             AndroidModel androidModel, List<SocialEvent> events,
                              int resource, boolean isStandalone)
     {
         super(context, resource, events);
         this.context = context;
         this.model = model;
-        this.dbHelper = dbHelper;
+        this.androidModel = androidModel;
         this.layoutResource = resource;
         this.isStandalone = isStandalone;
         this.selectedItemsIds = new SparseBooleanArray();
@@ -90,7 +88,7 @@ public class EventArrayAdapter extends ArrayAdapter<SocialEvent>
     @Override
     public void remove(SocialEvent event)
     {
-        ModelDbHelper.removeEvent(model, dbHelper, event.getId());
+        androidModel.removeEvent(event.getId());
         notifyDataSetChanged();
     }
 

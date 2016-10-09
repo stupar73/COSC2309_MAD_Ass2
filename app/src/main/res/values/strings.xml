@@ -1,16 +1,13 @@
 <resources>
     <string name="app_name">Social Event Planner</string>
-    <string-array name="main_activities">
-        <item>Event List</item>
-        <item>Calendar</item>
-    </string-array>
     <string name="drawer_open">Open the navigation drawer</string>
     <string name="drawer_close">Close the navigation drawer</string>
+    <string name="calendar_activity_title">Calendar</string>
     <string name="event_list_activity_title">Event List</string>
     <string name="view_event_activity_title">View Event</string>
     <string name="edit_event_activity_title">Edit Event</string>
     <string name="add_event_activity_title">Add Event</string>
-    <string name="calendar_activity_title">Calendar</string>
+    <string name="preferences_activity_title">Preferences</string>
     <string name="event_list_no_events">No events scheduled</string>
     <string name="calendar_no_events">No events scheduled for selected date</string>
     <string name="event_time">%1$s - %2$s</string>
@@ -39,4 +36,10 @@
     <string name="calendar_thursday">T</string>
     <string name="calendar_friday">F</string>
     <string name="calendar_saturday">S</string>
+    <string name="notif_threshold_label">Notification threshold (mins)</string>
+    <string name="distance_check_freq_label">Distance check frequency (mins)</string>
+    <string name="title_activity_map">Map</string>
+    <string name="notification_title">%1$s is starting soon</string>
+    <string name="notification_text">Starting in %1$s, travel time: %2$s</string>
+    <string name="event_location_field_map">%1$s (Click to view on map)</string>
 </resources>

@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import s3390317.mad.ass2.R;
 import s3390317.mad.ass2.view.CalendarActivity;
 import s3390317.mad.ass2.view.EventListActivity;
+import s3390317.mad.ass2.view.PreferencesActivity;
 
 /**
  * Opens the relevant activity upon selection from the navigation draw.
@@ -37,11 +38,10 @@ public class NavigationItemSelectedListener
             return true;
         }
 
-        item.setChecked(true);
-
         switch (item.getItemId())
         {
             case R.id.calendar_activity:
+                item.setChecked(true);
                 if (!context.getClass().equals(CalendarActivity.class))
                 {
                     Intent calendarIntent = new Intent(
@@ -50,12 +50,18 @@ public class NavigationItemSelectedListener
                 }
                 return true;
             case R.id.event_list_activity:
+                item.setChecked(true);
                 if (!context.getClass().equals(EventListActivity.class))
                 {
                     Intent eventListIntent = new Intent(
                             context, EventListActivity.class);
                     context.startActivity(eventListIntent);
                 }
+                return true;
+            case R.id.preferences_activity:
+                Intent preferencesIntent = new Intent(
+                        context, PreferencesActivity.class);
+                context.startActivity(preferencesIntent);
                 return true;
             default:
                 return false;

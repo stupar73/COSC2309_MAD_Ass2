@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.UUID;
 
 public class SimpleSocialEvent implements SocialEvent
@@ -53,8 +54,10 @@ public class SimpleSocialEvent implements SocialEvent
                              String endTimeStr, String venue, String location,
                              String note, List<Contact> attendees)
     {
-        this(UUID.randomUUID().toString(), title, Calendar.getInstance(),
-                Calendar.getInstance(), venue, location, note, attendees);
+        this(UUID.randomUUID().toString(), title,
+                Calendar.getInstance(TimeZone.getDefault()),
+                Calendar.getInstance(TimeZone.getDefault()),
+                venue, location,note, attendees);
         setStartDate(startDateStr);
         setStartTime(startTimeStr);
         setEndDate(endDateStr);
@@ -122,7 +125,7 @@ public class SimpleSocialEvent implements SocialEvent
         try
         {
             // Retrieve calendar object from passed string
-            Calendar newStartDate = Calendar.getInstance();
+            Calendar newStartDate = Calendar.getInstance(TimeZone.getDefault());
             newStartDate.setTime(dateFormat.parse(dateStr));
 
             // Update start date values
@@ -147,7 +150,7 @@ public class SimpleSocialEvent implements SocialEvent
         try
         {
             // Retrieve calendar object from passed string
-            Calendar newStartTime = Calendar.getInstance();
+            Calendar newStartTime = Calendar.getInstance(TimeZone.getDefault());
             newStartTime.setTime(timeFormat.parse(timeStr));
 
             // Update start time values
@@ -202,7 +205,7 @@ public class SimpleSocialEvent implements SocialEvent
         try
         {
             // Retrieve calendar object from passed string
-            Calendar newEndDate = Calendar.getInstance();
+            Calendar newEndDate = Calendar.getInstance(TimeZone.getDefault());
             newEndDate.setTime(dateFormat.parse(dateStr));
 
             // Update start date values
@@ -227,7 +230,7 @@ public class SimpleSocialEvent implements SocialEvent
         try
         {
             // Retrieve calendar object from passed string
-            Calendar newEndTime = Calendar.getInstance();
+            Calendar newEndTime = Calendar.getInstance(TimeZone.getDefault());
             newEndTime.setTime(timeFormat.parse(timeStr));
 
             // Update start time values

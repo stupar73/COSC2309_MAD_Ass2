@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/nav_top"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/event_list_activity"
@@ -14,6 +16,18 @@
             android:checked="false"
             android:icon="@drawable/ic_view_calendar_black_48dp"
             android:title="@string/calendar_activity_title" />
+
+    </group>
+
+    <group
+        android:id="@+id/nav_bottom"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/preferences_activity"
+            android:checked="false"
+            android:icon="@drawable/ic_settings_black_48dp"
+            android:title="@string/preferences_activity_title" />
 
     </group>
 

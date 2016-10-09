@@ -6,20 +6,22 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import s3390317.mad.ass2.R;
+import s3390317.mad.ass2.controller.OpenMapListener;
 import s3390317.mad.ass2.model.EventModel;
 import s3390317.mad.ass2.model.SocialEvent;
 import s3390317.mad.ass2.view.model.DatabaseHelper;
 import s3390317.mad.ass2.view.model.IntentRequestCodes;
-import s3390317.mad.ass2.view.model.ModelDbHelper;
+import s3390317.mad.ass2.view.model.AndroidModel;
 
 public class ViewEventActivity extends AppCompatActivity
 {
     private EventModel model;
-    private DatabaseHelper dbHelper;
+    private AndroidModel androidModel;
     private String eventId;
     private SocialEvent event;
     private boolean updateList = false;
@@ -42,7 +44,7 @@ public class ViewEventActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         model = EventModel.getSingletonInstance();
-        dbHelper = DatabaseHelper.getSingletonInstance(this);
+        androidModel = AndroidModel.getSingletonInstance(this);
 
         Intent intent = getIntent();
         eventId = intent.getStringExtra("eventId");
@@ -66,7 +68,9 @@ public class ViewEventActivity extends AppCompatActivity
         venue.setText(event.getVenue());
 
         TextView location = (TextView) findViewById(R.id.view_event_location_field);
-        location.setText(event.getLocation());
+        location.setText(getResources().getString(
+                R.string.event_location_field_map, event.getLocation()));
+        location.setOnClickListener(new OpenMapListener(this, event.getLocation()));
 
         TextView note = (TextView) findViewById(R.id.view_event_note_field);
         note.setText(event.getNote());
@@ -125,7 +129,7 @@ public class ViewEventActivity extends AppCompatActivity
      */
     private void removeEvent()
     {
-        ModelDbHelper.removeEvent(model, dbHelper, eventId);
+        androidModel.removeEvent(eventId);
         Toast.makeText(this, event.getTitle() + " deleted.", Toast.LENGTH_SHORT)
                 .show();
         updateList = true;
